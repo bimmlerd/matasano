@@ -13,9 +13,9 @@ class TestUtilMethods(unittest.TestCase):
       self.assertEqual(util.fixed_xor(input1, input2), "746865206b696420646f6e277420706c6179")
 
   def test_score_englishness(self):
-      strings = ['asdasdasasdasdasdasdasd', "this is valid english", "thiss sis sortamosky ltlle bit anglaise", "lklkljk(lkj(lkh"]
+      strings = ['asdasdasasdasdasdasdasd', "this is a proper, valid english sentence", "thiss sis sortamosky ltlle bit anglaise", "lklkljk(lkj(lkhä12jöasdh23"]
       sorted_strings = sorted(strings, key=util.score_englishness)
-      self.assertEqual(sorted_strings, ["lklkljk(lkj(lkh", "asdasdasasdasdasdasdasd", "thiss sis sortamosky ltlle bit anglaise", "this is valid english"])
+      self.assertEqual(sorted_strings, [strings[3], strings[0], strings[2], strings[1]])
 
 if __name__ == '__main__':
     unittest.main()
