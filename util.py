@@ -9,6 +9,11 @@ def hex_to_base64(input_string: 'str') -> 'str':
 def fixed_xor(input1: 'str', input2: 'str') -> 'str':
     return hex(int(input1, 16) ^ int(input2, 16))[2:]
 
+
+def utf8hex_to_ascii(input_string: 'str') -> 'str':
+    return bytes.fromhex(input_string).decode("utf-8")
+
+
 def single_byte_xor(input1: 'str', key: 'str') -> 'str':
     return fixed_xor(input1, len(input1) * key)
 
@@ -22,7 +27,7 @@ def score_englishness(input_string: "str") -> 'int':
             freq = letters[letter] / length * 100
             score -= abs(englishLetterFreq[letter] - freq)
 
-    score -= len(set(letters).difference(set(englishLetterFreq)).difference(set([",", ".", "!", "(", ")"]))) * 20
+    score -= len(set(letters).difference(set(englishLetterFreq)).difference({",", ".", "!", "(", ")"})) * 20
     return score
 
 
